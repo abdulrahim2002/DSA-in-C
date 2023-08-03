@@ -1,0 +1,321 @@
+                                                        CHAARACTER COUNTING ALGORITHM:
+
+Discussion and Modelling:
+
+    The number of characters in a string are all characters excluding the terminating character '\0' character which marks the end of string.
+In a genric defination of characters blanks, tabs and '\n' are not considered characters, but in Computer Science defination (more specifically ASCII character set)
+blank characters are also considered characters. For this implementation we will count these (blanlks, tabs and new-lines) characters.
+
+Algorithm:
+
+step 1: declare the iterating variable outside of iterating loop say 'i' and a "character_counter" variable.
+step 2: iterate through the loop until '\0' character is reached.
+step 3: at the end of iterating loop, i contains (number of characteres + 1, since it includes '\0' character).
+step 4: assign character_counter= i - 1 (to exclude terminating character).
+step 5: return character_counter. 
+
+
+
+                                                        WORD COUNTING ALGORITHM;
+
+Discussion and Modelling:
+
+Word detection: 
+    All words are usually seprated by one or more white space character or slash charaters. These characters are blanks, tabs, newlines slash and backslashes.
+while listing values in a text words may even be seprated by commas','.
+
+    Hence, words can be sepreated by blank(' ') or tab(\t), slash('/')or backslash('\'), comma(',').
+So in general, we can iterate throuhgh the text to find a word seprating character. ones we find this character we know that a word has been read.
+so we iterate the word counter. This poses a problem, what if word-seprating-characters appear contigously.
+
+    To solve this program we introduce the variable state which keeps track that the last word was part of text of a word-seprating-character.
+
+There are few more considerations:
+
+Words seprated by comma:
+    The common text formatting ritual follows that you should seprate different words with space when using comma.
+        eg. I'm like cars, computers, football and technology.
+   
+    Observe how cars and computers are seprated. SO in this case (cars,) is considered a word.
+
+words at the end of text:
+consider the last line of the text. It may be : And hence, we should not burn crackers.
+
+Note theat the last word is ended by a dot and the eof appears, hence there is a need to include '.' in word seprating characters list.
+It is less likely that these sentences will end in '?' , '!' although this is a valid exception.
+
+Algorithm:
+
+In word counting algorithm we use a variable "state". Which tells weather current character is IN or OUT of a word while iterating through the text.
+
+Cases:
+Now while iterating through the loop the following cases may arrise.
+    case 1: current character is word-seprating-character.
+        In this case there are two subcases.
+        
+            subcase 1: state is out.
+            subcase 2: state is in.
+    
+    case 2: character is not word seprating.
+        subcases: state is IN or OUT 
+
+step 1: declare a variable state, initialise state to OUT.
+step 2: iterate through the text. if a blank character (blank, tab or newline) or slash character(slash and black)
+        if (current character is word seprating)
+            if(state is out)
+                skip this iteration
+            else
+                state = OUT
+                increment word counter
+
+        if(current character is not word seprating)
+            if(state is OUT)
+                state = IN
+            else 
+                continue to next character
+step 3: return word counter.
+
+
+                                                        SENTENCE COUNTING ALGORITHM
+
+Discussion and Modelling:
+ A sentence starts when another sentence ends or if it is the beginning of text, and is ended by ‘.’ , ’?’ or ‘!’.
+Hence, each sentence must contain 1 of these sentense-terminating characters which marks the end of current line.
+So simply counting the number of these sentence-terminating characters will give the number of sentences.
+
+Algorithm:
+Step 1: Declare and initialize a sentense_counter variable to 0. 
+Step 2: iterate through the text. if a sentence terminating character is encountered increment the sentense-counter.
+step 3: return sentense_counter.
+
+
+
+                                                        PARAGRAPH COUNTING ALGORITHM
+Discussion and modelling:
+ A paragraph is a coherent block of text, such as a group of related sentences that develop a single topic or a coherent part of a larger topic.
+
+The beginning of a paragraph is indicated by
+•	the beginning of the content, that is, the paragraph is the first content in the document, or
+•	exactly one blank line preceding the paragraph text.
+
+The end of a paragraph is indicated by
+•	the end of the content, that is, the paragraph is the last content in the document, or
+•	one or more blank lines following the paragraph text
+
+A blank line contains zero or more non-printing characters, such as space or tab, followed by a new line.
+
+For our purposes we assume that each blank line contains a newline character only.
+
+So, based on the understanding that two paragraphs will be seprated by two or more new line charachters. And all non-empty text contain
+atleast 1 paragraph.
+
+Algorithm:
+step 1: initialise a variable paragraph counter to 1.
+step 2: iterate through the text until a new line character '\n' is found.
+step 3: if '\n' is found fetch another character, if it is also '\n', then we know that the 2 new lines are seprating 2 paragraphs.
+        On each iteration check for terminatin character.
+
+step 4: increment paragraph-counter, iterate until the fetched character is not '\n', this eliminates subsequent '\n' from being checked.
+
+step 5: at the end of loop return paragraph-counter.
+
+
+
+                                                        SEARCH ALGORITHM
+Discussion and Modelling:
+
+
+
+
+                                                        WORD FREQUENCY ALGORITHM:
+
+Discussion and Modelling:
+
+In this algorithm we want to find out the number of occurences of each word. 
+
+For this we first store all the words. then we can pass each word into search function to find its number of occurences.
+
+To store the words we can use linked list. the purpose of using list is that its resizable and words can easily be stored along with their order.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input 1: 
+
+Abstract: 
+    A cell of an energy storage device with at least one electrode that is tabless, and methods of forming thereof, are
+described. The cell includes a first substrate having a first coating disposed thereon, wherein a second portion of the first substrate
+at a proximal end along the width of the first substrate comprises a conductive material. An inner separator is disposed over the first
+substrate. A second substrate is disposed over the inner separator. The second substrate has a second coating disposed thereon. The first
+substrate, the inner separator, and the second substrate in a successive manner, the first substrate, the inner separator, and the second
+substrate are rolled about a central axis.
+
+Description of the Related Art:
+    Many types of battery cells are currently used as energy sources in electric
+vehicles and energy-storage applications. Current cells use a jelly-roll design in which the
+cathode, anode, and separators are rolled together and have a cathode tab and an anode tab to
+connect to the positive and negative terminals of the cell can. The path of the current
+necessarily travels through these tabs to connectors on the outside of the battery cell.
+However, ohmic resistance is increased with distance when current must travel all the way
+along the cathode or anode to the tab and out of the cell. Furthermore, because the tabs are
+additional components, they increase costs and present manufacturing challenges.
+
+
+
+input 2:
+
+                                                        A CELL WITH A TABLESS ELECTRODE
+BACKGROUND
+The present disclosure relates to a cell for an energy storage device.
+Description of the Related Art
+Many types of battery cells are currently used as energy sources in electric
+vehicles and energy-storage applications. Current cells use a jelly-roll design in which the
+cathode, anode, and separators are rolled together and have a cathode tab and an anode tab to
+connect to the positive and negative terminals of the cell can. The path of the current
+necessarily travels through these tabs to connectors on the outside of the battery cell.
+However, ohmic resistance is increased with distance when current must travel all the way
+along the cathode or anode to the tab and out of the cell. Furthermore, because the tabs are
+additional components, they increase costs and present manufacturing challenges.
+
+SUMMARY
+ For purposes of summarizing the invention and the advantages achieved
+over the prior art, certain objects and advantages of the invention are described herein. Not
+all such objects or advantages may be achieved in any particular embodiment of the
+invention. Thus, for example, those skilled in the art will recognize that the invention may be
+embodied or carried out in a manner that achieves or optimizes one advantage or group of
+advantages as taught herein without necessarily achieving other objects or advantages as may
+be taught or suggested herein.
+
+ In one aspect, a cell of an energy storage device is described. The cell
+comprises a first substrate comprising a first coating, wherein a second portion of the first
+substrate at a proximal end along the width of the first substrate comprises a conductive
+material, a second substrate comprising a second coating, and an inner separator disposed
+between the first substrate and the second substrate, wherein the first substrate, the inner
+separator, and the second substrate are rolled about a central axis to form a cell.
+
+ In some embodiments, the conductive material consists essentially of the
+first substrate. In some embodiments, the first substrate is a current collector. In some
+embodiments, the first substrate is positioned closest to the central axis when rolled. In some
+embodiments, the second substrate is positioned closest to the central axis when rolled.
+
+ In some embodiments, a first portion of the first substrate located partway
+along a width of the first substrate is coated with an electrically insulative material. In some
+embodiments, the second portion is located adjacent to the first portion. In some
+embodiments, the second substrate further comprises a conductive tab. In some
+embodiments, the conductive tab is disposed partway along a length of the second substrate
+and extends transverse to a mid-plane of the second substrate. In some embodiments, the first
+substrate forms one of an anode and a cathode and the second substrate forms another of the
+anode and the cathode.
+
+ In another aspect, an energy storage device is described. The energy
+storage device comprises the cell of an energy storage device, and a can comprising a first
+end and a second end, wherein the first end comprises a first cap comprising a contact
+surface.
+
+ In some embodiments, the conductive material is in electrical contact with
+the contact surface. In some embodiments, the first end comprises a bottom wall. In some
+embodiments, each of the first and second ends are open ends. In some embodiments, the
+first end of the can is configured to receive the first cap. In some embodiments, the second
+end of the can is configured to receive a second cap. In some embodiments, the first cap
+comprises at least one of nickel (Ni) and a Ni- based alloy. In some embodiments, the contact
+surface of the first cap comprises a helically shaped groove.
+
+ In another aspect, a method for forming a cell is described. The method
+comprises providing a first substrate comprising a first coating wherein a second portion of
+the first substrate at a proximal end along the width of the first substrate comprises a
+conductive material, disposing an inner separator over the first substrate, providing a second
+substrate comprising a second coating, disposing the second substrate over the inner
+separator, and rolling the first substrate, the inner separator, and the second substrate
+disposed over each other about a central axis to form a cell.
+
+ In some embodiments, the first substrate is closest in position to the
+central axis. In some embodiments, the second substrate is closest in position to the central
+axis. In some embodiments, the first substrate, the inner separator, and the second substrate
+are disposed over each other in a successive manner.
+
+ In some embodiments, the method further comprises coating a first portion
+of the first substrate located partway along a width of the first substrate with an electrically
+insulative material. In some embodiments, the second portion is located adjacent to the first
+portion. In some embodiments, the method further comprises forming a conductive tab
+partway along a length of the second substrate by extending a portion of the second substrate
+transverse to a mid-plane of the second substrate.
+
+ In another aspect a method of forming an energy storage device is
+described. The method comprises the method for forming a cell, and placing the cell into a
+can comprising a first end and a second end, wherein the first end comprises a first cap
+comprising a contact surface.
+
+ In some embodiments, the method further comprises electrically
+connecting the conductive material with the contact surface.
+
+ All of these embodiments are intended to be within the scope of the
+invention herein disclosed. These and other embodiments of the present invention will
+become readily apparent to those skilled in the art from the following detailed description of
+the preferred embodiments having reference to the attached figures, the invention not being
+limited to any particular preferred embodiment(s) disclosed.

@@ -1,0 +1,162 @@
+Algorithm for add at last.
+
+considering, size of input array= N
+
+step 1; declare an array of size= N + 1
+
+	space and time:	space used= N+1 , cpu steps= 0
+
+step 2; copy all elements of the original array into new array
+
+		space used= 1( for index keeping variable (like "i" in for loop) ) , 
+		cpu steps= 1(initialise i) + N (assignments) + N (conditions checks) + N (iterations)
+
+step 3; assign the element(to be added) at the last index of new.
+
+		space used= 0, cpu steps= 1(assignment)
+
+Hence, space complexity= (N+1) + (1) + (0) = N+2 = O(N)
+	
+	time complexity= (0) + (3N + 1) + (1) = 3N+2 = O(N)
+
+
+
+
+
+
+
+Algorithm for insert anywhere.
+in this we divide the array into two parts. part 1= array before index, part2= array after index.
+
+eg. suppose inserting at index "ind= 2(say)"
+array= {1,2,3,4}
+
+part1= {1,2}	//index 0 and 1 are possible, i.e. 0 to ind-1
+part 2= {3,4}	//index+1 to size of array are valid indexes
+
+part1 and part2 are copied into newly created array accordingly.
+
+
+
+Algorithm: //assuming that user is inserting at "x" somewhere in array which has N elements total
+
+step 1; check if x is valid
+		space used= 0, cpu steps= 1
+
+step 2; declare an array of size= N + 1
+
+		space used= N+1 , cpu steps= 0
+
+step 3; copy elements of the original array into new array before x ,
+
+		space used= 1( for index keeping variable (like "i" in for loop) ) , 
+		cpu steps= 1 (initialise i) + x (assignments) + x (conditions checks) + x (iterations)
+
+step 4; assign the element(to be added) at the x
+
+		space used= 0, cpu steps= 1(assignment)
+
+step 5; copy elements of the original array into new array after x
+
+		space used= 1( for index keeping variable (like "i" in for loop) ) , 
+		cpu steps= 1 (initialise i) + N - x (assignments) + N - x (conditions checks) + N - x (iterations)
+
+
+
+Hence, space complexity= (0) + (N+1) + (1) + (0) + (1) = N+3 = O(N)
+	
+	   time complexity= (1) + (0) + (3x + 1) + (1) + (3(N-x) + 1)= 3N+4 = O(N)
+
+
+
+
+
+
+Algorithm to delete
+
+Algorithm: //assuming that user is deleting element "t" at index "x" somewhere in array which has N elements total
+
+
+step 1; declare an array of size= N - 1
+
+		space used= N-1 , cpu steps= 0
+
+step 2; copy elements of the original array into new array before x, i.e. before t is found
+
+		space used= 1( for index keeping variable (like "i" in for loop) ) 
+		cpu steps= 1 (initialise i) + (x-1) (assignments) + (x-1) (conditions checks) + (x-1) (iterations)
+
+step 3; if 
+			t is not found, output "not found" and exit
+		
+		space used= 0, cpu steps= 1(condition check)
+		
+		else
+			incremwnt the index and proceed to copy from (x+1)th to Nth element
+
+		space used= 0, cpu steps= 1(exit condition check) + 1(increment i) + (N-x)condition check + (N-x)assignments + (N-x)iteration
+
+
+Hence, space complexity= (N-1) + (1) + (0) + (0) = N = O(N)
+	
+	   time complexity= (0) + (1+3(x-1)) + (1+1+3*(N-x)) = 3N = O(N)
+
+
+
+
+
+
+Algorithm to update
+
+Algorithm: //assuming that user is update at "x" somewhere in array which has N elements total
+
+step 1; check if x is valid
+		space used= 0, cpu steps= 1
+
+step 2; assign new value at x
+		space used= 0, cpu steps= 1(assignment)
+
+
+Hence, space complexity= (0)= 0 = O(1)
+	
+	   time complexity= (1) + (1) = 2 = O(1)
+
+
+
+
+
+
+Algorithm to delete
+
+Algorithm: //assuming that user is deleting element "t" at index "x" somewhere in array which has N elements total
+
+
+step 1; declareand initilize two variables, min=[more than any value in array] and max=0, to keep track of the minium and maxium seen so far
+
+		space used= 1 , cpu steps= 2(assignments)
+
+step 2; transverse the array using for loop
+		
+		if current element is greater than maxium
+			update max variable.
+
+		if current element is smaller than minium
+			update min variable.	
+
+		space and time calculations:
+			
+			case 1:assuming trivial case, i.e. array in descending or ascending order
+
+				space used= 0 
+				cpu steps= 2(condition checks ) + N (assignments, on of the variables is being updated in all iterations )
+
+			case 2:assuming not ordering
+
+				space used= 0
+				cpu steps= 
+
+
+
+Hence, space complexity= (N-1) + (1) + (0) + (0) = N = O(N)
+	
+	   time complexity= (0) + (1+3(x-1)) + (1+1+3*(N-x)) = 3N = O(N)

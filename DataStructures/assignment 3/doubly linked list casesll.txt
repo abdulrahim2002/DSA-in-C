@@ -1,0 +1,164 @@
+cases of inserting of node in doubly linked list, assuming the leftmost and rightmost pointers 
+are called leftmost and rightmost.
+
+1.INSERTING AT DESIRED PLACE
+
+Insertion before/after a specific node(lets call it target). in our case it is a node whose name is greater than our newly created node's
+name.
+
+case 1:
+	list is empty.
+
+Implications:
+	leftend and rightend points NULL.
+
+Insertion algorithm:
+	create a node pointer(say n) and a node. n points node. assign node the required data.
+	assign leftmost and rightmost to n.
+
+Now leftmost and rightmost point to new node.and list with 1 node is created.
+
+case 2:
+	list has one node or more nodes.
+
+Imlication:
+	leftmost and rightmost are pointing to a node.
+	leftpointer(left) and rightpointer(right) are pointing null
+
+Insertion algorithm:
+	find the target node. by transversing the list.
+		if name in new node being checked is smaller than name in current node, it is target node.
+	subcase 1: the target node maybe first node.(insertion at left end)
+	subcase 2: the target node maybe any node.(insertion at left of tsrget node)
+	subcase 3: target node is not found.(insertion at last(from right) that will be right end ).
+
+	subcase 1:
+		left of leftend(previously first node) = new node.
+		right of newnode = leftend(previously first ndoe).
+		leffend = newnode.
+
+	subcase 2:
+		create a temp node pointer. we insert between temp and current node. temp is left of current node
+		
+		make the following connections:
+			right of temp= new node
+			left of newnode= temp
+
+			left of currentnode = newnode
+			right of newnode is current
+
+	subcase 3:
+		right of rightend(previously last node)= newnode
+		left of newnode= rightend(previously last node)
+		rightend = newnode
+
+Example:
+		//Adding at a desired place.
+        
+        if (leftend== NULL && rightend== NULL)                  //list is empty
+        {
+            leftend= new;
+            rightend= new;
+        }
+        else
+        {
+            for (node *i = leftend; i != NULL ; i=i->right )  // Find target i.e. a node which is greater than current node alphabatecally
+            {   
+                //lstring clients cannot be pointers because they will keep on changing
+                char target_lname[50]; 
+                strcpy( target_lname , lstring(i->name) );
+                
+                char curr_lname[50];
+                strcpy( curr_lname , lstring(new->name) );
+
+                
+                int r= strcmp( curr_lname , target_lname );
+
+                if (r<0)    //current is smaller than target
+                {
+                    //insert before i
+                    node *prev= i->left;    //prev points to previous node
+                    if (prev!= NULL)
+                    {
+                        //connect with prev
+                        prev->right= new;
+                        new->left= prev;
+
+                        //new connects i
+                        i->left= new;
+                        new->right= i;
+                        break;
+                    }
+                    else                    //this is the smallest node
+                    {
+                        //insert at left end
+                        leftend->left= new;                                 //left of first node is new
+                        new->right= leftend;                                //right of new has first node(previously)
+                        leftend= new;
+                        break;
+                    }
+                    
+
+                }
+            }
+
+            //no target found(current is the largest alphabatecally )//insert at right end
+            rightend->left= new;                                 
+            new->right= rightend;                               
+            rightend= new;
+
+        }
+	
+
+
+
+
+2.INSERTING AT AN END
+
+case 1:
+	list is empty.
+
+Implications:
+	leftend and rightend points NULL.
+
+Insertion algorithm:
+	create a node pointer(say n) and a node. n points node. assign node the required data.
+	assign leftmost and rightmost to n.
+
+Now leftmost and rightmost point to new node.and list with 1 node is created.
+
+case 2:
+	list has one node or more nodes.
+
+Imlication:
+	leftmost and rightmost are pointing to a node.
+	leftpointer(left) and rightpointer(right) are pointing null
+
+Insertion algorithm:
+	derefer leftmost(which gives first node) and assign left(leftpointer of first node) to new node.
+	assign right of new node to first node.
+	assign leftmost to newnode.
+
+Example;
+		/*
+        //Adding at the an end
+
+        if (leftend== NULL && rightend== NULL)                  //list is empty
+        {
+            leftend= new;
+            rightend= new;
+
+            printf("left (%d) :%x\n",i+1, new->left );
+            printf("right (%d) :%x\n",i+1, new->right );
+        }
+        else                                                    //list has one or more nodes
+        {
+            leftend->left= new;                                 //left of first node is new
+            new->right= leftend;                                //right of new has first node(previously)
+            leftend= new;
+
+            printf("left (%d) :%x\n",i+1, new->left );
+            printf("right (%d) :%x\n",i+1, new->right );
+        }
+
+        */
